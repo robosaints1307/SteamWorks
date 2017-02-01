@@ -17,7 +17,7 @@ void DriveTrain::InitDefaultCommand(){
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-	void DriveTrain::Drivewithjoystick(Joystick* lStick, Joystick* rStick){
+	void DriveTrain::DriveWithJoystick(Joystick* lStick, Joystick* rStick){
 
 	robotDrive->TankDrive(lStick, rStick);
 

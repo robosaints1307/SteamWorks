@@ -15,7 +15,7 @@ public:
 
 	void InitDefaultCommand();
 
-	void Drivewithjoystick (Joystick* lStick, Joystick* rStick);
+	void DriveWithJoystick (Joystick* lStick, Joystick* rStick);
 };
 
 #endif
