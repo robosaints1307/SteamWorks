@@ -5,25 +5,16 @@
 #include "Subsystems/Drivetrain.h"
 #include "Robot.h"
 
-
-std::shared_ptr<DriveTrain> driveTrain;
-
-class Robot: public IterativeRobot
-{
+std::shared_ptr<DriveTrain> Robot::(new DriveTrain());
 //class only once, in the .h file
 
-private:
-	std::unique_ptr<Command> autonomousCommand;
-	SendableChooser *chooser;
-
-	void RobotInit()
+	void Robot::RobotInit()
 	{
 		CommandBase::init();
-		chooser = new SendableChooser();
+//		chooser = new SendableChooser();
 		//chooser->AddDefault("Default Auto", new ExampleCommand());
 		//chooser->AddObject("My Auto", new MyAutoCommand());
 		SmartDashboard::PutData("Auto Modes", chooser);
-		driveTrain = (new DriveTrain());
 	}
 
 	/**
@@ -49,7 +40,7 @@ private:
 	 * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
 	 * or additional comparisons to the if-else structure below with additional strings & commands.
 	 */
-	void AutonomousInit()
+	void Robot::AutonomousInit()
 	{
 		/* std::string autoSelected = SmartDashboard::GetString("Auto Selector", "Default");
 		if(autoSelected == "My Auto") {
@@ -64,12 +55,12 @@ private:
 			autonomousCommand->Start();
 	}
 
-	void AutonomousPeriodic()
+	void Robot::AutonomousPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
 	}
 
-	void TeleopInit()
+	void Robot::TeleopInit()
 	{
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
@@ -79,16 +70,16 @@ private:
 			autonomousCommand->Cancel();
 	}
 
-	void TeleopPeriodic()
+	void Robot::TeleopPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
 	}
 
-	void TestPeriodic()
+	void Robot::TestPeriodic()
 	{
 		LiveWindow::GetInstance()->Run();
 	}
-};
+
 
 START_ROBOT_CLASS(Robot)
 

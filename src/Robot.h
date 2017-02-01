@@ -16,8 +16,10 @@
 class Robot: public IterativeRobot{
 
 public:
-	static std::shared_ptr<DriveTrain> drivetrain;
+	//static std::shared_ptr<DriveTrain> drivetrain;
 	static std::unique_ptr<OI> oi;
+	std::unique_ptr<Command> autonomousCommand;
+	SendableChooser *chooser;
 
 private:
 	LiveWindow *lw = LiveWindow::GetInstance();
