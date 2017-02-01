@@ -1,9 +1,21 @@
 #ifndef OI_H
 #define OI_H
 
-class OI {
+#include "WPILib.h"
+
+class OI
+{
+private:
+
+	Joystick *lStick;
+	Joystick *rStick;
+
 public:
 	OI();
+
+	Joystick* GetLStick();
+	Joystick* GetRStick();
+
 };
 
-#endif  // OI_H
+#endif
