@@ -5,15 +5,15 @@
 OI::OI()
 {
 	// Process operator interface input here.
-	lStick = new Joystick(L_Stick);
-	rStick = new Joystick(R_Stick);
+	lStick = new frc::Joystick(L_Stick);
+	rStick = new frc::Joystick(R_Stick);
 }
-Joystick* OI::GetLStick(){
+frc::Joystick* OI::GetLStick(){
 	return lStick;
 
 }
 
-Joystick* OI::GetRStick(){
+frc::Joystick* OI::GetRStick(){
 	return rStick;
 }
 

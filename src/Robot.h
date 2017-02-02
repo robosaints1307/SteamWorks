@@ -20,8 +20,8 @@ public:
 
 private:
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
-	frc::Command* autonomousCommand;
-	frc::SendableChooser<frc::Command*>* chooser;
+	Command* autonomousCommand;
+	SendableChooser<Command*>* chooser;
 
 	void RobotInit() override;
 	void AutonomousInit() override;

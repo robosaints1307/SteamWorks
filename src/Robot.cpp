@@ -3,6 +3,8 @@
 
 #include <cstddef>
 
+using namespace frc;
+
 // In Robot.h, drivetrain is declared a static. This means that
 // will be one instance of drivetrain, and we need to define
 // Robot::drivetrain somewhere for the linker to find it.
@@ -24,11 +26,11 @@ void Robot::RobotInit()
 
 	CommandBase::init();
 
-	chooser = new frc::SendableChooser<frc::Command*>();
+	chooser = new SendableChooser<Command*>();
 	//chooser->AddDefault("Default Auto", new ExampleCommand());
 	//chooser->AddObject("My Auto", new MyAutoCommand());
 
-	frc::SmartDashboard::PutData("Auto Modes", chooser);
+	SmartDashboard::PutData("Auto Modes", chooser);
 }
 
 /**
@@ -44,8 +46,8 @@ void Robot::AutonomousInit()
 {
 	/*
 	 * This chunk of code is probably from an old example. With
-	 * templates (i.e.  frc::SendableChooser<frc::Command*>) the compiler knows
-	 * that chooser->GetSelected() returns an frc::Command* and this kind
+	 * templates (i.e.  SendableChooser<Command*>) the compiler knows
+	 * that chooser->GetSelected() returns an Command* and this kind
 	 * of switching isn't needed.
 	 *
 	 std::string autoSelected = SmartDashboard::GetString("Auto Selector", "Default");
@@ -64,7 +66,7 @@ void Robot::AutonomousInit()
 
 void Robot::AutonomousPeriodic()
 {
-	frc::Scheduler::GetInstance()->Run();
+	Scheduler::GetInstance()->Run();
 }
 
 void Robot::TeleopInit()
@@ -79,12 +81,12 @@ void Robot::TeleopInit()
 
 void Robot::TeleopPeriodic()
 {
-	frc::Scheduler::GetInstance()->Run();
+	Scheduler::GetInstance()->Run();
 }
 
 void Robot::TestPeriodic()
 {
-	frc::LiveWindow::GetInstance()->Run();
+	LiveWindow::GetInstance()->Run();
 }
 
 
