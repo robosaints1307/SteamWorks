@@ -3,11 +3,11 @@
 #include "../Commands/Drive.h"
 
 DriveTrain::DriveTrain()
-	:	Subsystem("DriveTrain")
+:	Subsystem("DriveTrain")
 {
-  robotDrive = new RobotDrive(F_R_Motor, B_R_Motor, F_L_Motor, B_L_Motor);
-  robotDrive -> SetSensitivity(0.75);
-  robotDrive -> SetMaxOutput(1.0);
+	robotDrive = new RobotDrive(F_R_Motor, B_R_Motor, F_L_Motor, B_L_Motor);
+	robotDrive -> SetSensitivity(0.75);
+	robotDrive -> SetMaxOutput(1.0);
 }
 
 void DriveTrain::InitDefaultCommand(){
@@ -17,8 +17,12 @@ void DriveTrain::InitDefaultCommand(){
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-	void DriveTrain::DriveWithJoystick(Joystick* lStick, Joystick* rStick){
+void DriveTrain::DriveWithJoystick(Joystick* lStick, Joystick* rStick){
 
 	robotDrive->TankDrive(lStick, rStick);
 
+}
+
+void DriveTrain::Stop() {
+	robotDrive->StopMotor();
 }

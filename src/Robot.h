@@ -5,7 +5,6 @@
  *      Author: Robotics
  */
 #include "WPILib.h"
-#include "Commands/Command.h"
 #include "Subsystems/DriveTrain.h"
 #include "OI.h"
 
@@ -16,20 +15,20 @@
 class Robot: public IterativeRobot{
 
 public:
-	//static std::shared_ptr<DriveTrain> drivetrain;
-	static std::unique_ptr<OI> oi;
-	std::unique_ptr<Command> autonomousCommand;
-	SendableChooser *chooser;
+	static DriveTrain* drivetrain;
+	static OI* oi;
 
 private:
-	LiveWindow *lw = LiveWindow::GetInstance();
+	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
+	frc::Command* autonomousCommand;
+	frc::SendableChooser<frc::Command*>* chooser;
 
-	void RobotInit();
-	void AutonomousInit();
-	void AutonomousPeriodic();
-	void TeleopInit();
-	void TeleopPeriodic();
-	void TestPeriodic();
+	void RobotInit() override;
+	void AutonomousInit() override;
+	void AutonomousPeriodic() override;
+	void TeleopInit() override;
+	void TeleopPeriodic() override;
+	void TestPeriodic() override;
 };
 
 

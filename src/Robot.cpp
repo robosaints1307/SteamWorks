@@ -1,84 +1,91 @@
-#include "WPILib.h"
-#include "Commands/Command.h"
-//#include "Commands/ExampleCommand.h"
-#include "CommandBase.h"
-#include "Subsystems/Drivetrain.h"
 #include "Robot.h"
+#include "CommandBase.h"
 
-std::shared_ptr<DriveTrain> Robot::(new DriveTrain());
-//class only once, in the .h file
+#include <cstddef>
 
-	void Robot::RobotInit()
-	{
-		CommandBase::init();
-//		chooser = new SendableChooser();
-		//chooser->AddDefault("Default Auto", new ExampleCommand());
-		//chooser->AddObject("My Auto", new MyAutoCommand());
-		SmartDashboard::PutData("Auto Modes", chooser);
-	}
+// In Robot.h, drivetrain is declared a static. This means that
+// will be one instance of drivetrain, and we need to define
+// Robot::drivetrain somewhere for the linker to find it.
+// This is what we're doing here with drivetrain and oi.
+// Notice, though, that they are set to null. We set the pointer
+// in RobotInit, but the memory that holds the pointer is
+// defined here.
+//
+// These could be smart pointers, but I think that just adds
+// a level of complexity without any benefit to the robot code.
+//
+DriveTrain* Robot::drivetrain = 0;
+OI* Robot::oi = 0;
 
-	/**
-     * This function is called once each time the robot enters Disabled mode.
-     * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-     */
-	void DisabledInit()
-	{
-	}
+void Robot::RobotInit()
+{
+	drivetrain = new DriveTrain();
+	oi = new OI();
 
-	void DisabledPeriodic()
-	{
-		Scheduler::GetInstance()->Run();
-	}
+	CommandBase::init();
 
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
-	 * using the dashboard. The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW
-	 * Dashboard, remove all of the chooser code and uncomment the GetString code to get the auto name from the text box
-	 * below the Gyro
+	chooser = new frc::SendableChooser<frc::Command*>();
+	//chooser->AddDefault("Default Auto", new ExampleCommand());
+	//chooser->AddObject("My Auto", new MyAutoCommand());
+
+	frc::SmartDashboard::PutData("Auto Modes", chooser);
+}
+
+/**
+ * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
+ * using the dashboard. The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW
+ * Dashboard, remove all of the chooser code and uncomment the GetString code to get the auto name from the text box
+ * below the Gyro
+ *
+ * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
+ * or additional comparisons to the if-else structure below with additional strings & commands.
+ */
+void Robot::AutonomousInit()
+{
+	/*
+	 * This chunk of code is probably from an old example. With
+	 * templates (i.e.  frc::SendableChooser<frc::Command*>) the compiler knows
+	 * that chooser->GetSelected() returns an frc::Command* and this kind
+	 * of switching isn't needed.
 	 *
-	 * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
-	 * or additional comparisons to the if-else structure below with additional strings & commands.
-	 */
-	void Robot::AutonomousInit()
-	{
-		/* std::string autoSelected = SmartDashboard::GetString("Auto Selector", "Default");
+	 std::string autoSelected = SmartDashboard::GetString("Auto Selector", "Default");
 		if(autoSelected == "My Auto") {
-			autonomousCommand.reset(new MyAutoCommand());
+			autonomousCommand = new MyAutoCommand();
 		} else {
-			autonomousCommand.reset(new ExampleCommand());
-		} */
+			autonomousCommand = new ExampleCommand();
+		}
+	*/
 
-		autonomousCommand.reset((Command *)chooser->GetSelected());
+	autonomousCommand = chooser->GetSelected();
 
-		if (autonomousCommand != NULL)
-			autonomousCommand->Start();
-	}
+	if (autonomousCommand != NULL)
+		autonomousCommand->Start();
+}
 
-	void Robot::AutonomousPeriodic()
-	{
-		Scheduler::GetInstance()->Run();
-	}
+void Robot::AutonomousPeriodic()
+{
+	frc::Scheduler::GetInstance()->Run();
+}
 
-	void Robot::TeleopInit()
-	{
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
-		if (autonomousCommand != NULL)
-			autonomousCommand->Cancel();
-	}
+void Robot::TeleopInit()
+{
+	// This makes sure that the autonomous stops running when
+	// teleop starts running. If you want the autonomous to
+	// continue until interrupted by another command, remove
+	// this line or comment it out.
+	if (autonomousCommand != NULL)
+		autonomousCommand->Cancel();
+}
 
-	void Robot::TeleopPeriodic()
-	{
-		Scheduler::GetInstance()->Run();
-	}
+void Robot::TeleopPeriodic()
+{
+	frc::Scheduler::GetInstance()->Run();
+}
 
-	void Robot::TestPeriodic()
-	{
-		LiveWindow::GetInstance()->Run();
-	}
+void Robot::TestPeriodic()
+{
+	frc::LiveWindow::GetInstance()->Run();
+}
 
 
 START_ROBOT_CLASS(Robot)
