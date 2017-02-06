@@ -27,7 +27,7 @@ const int F_L_Motor = 2;
 const int B_L_Motor = 3;
 
 //Joystick
-const int L_Stick = 0;
-const int R_Stick = 1;
+const int R_Stick = 0;
+const int L_Stick = 1;
 
 #endif
