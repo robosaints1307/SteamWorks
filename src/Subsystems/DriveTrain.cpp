@@ -28,7 +28,7 @@ void DriveTrain::InitDefaultCommand(){
 void DriveTrain::DriveWithJoystick(Joystick* lStick, Joystick* rStick){
 
 	robotDrive->TankDrive(lStick, rStick);
-	SmartDashboard::PutNumber(encoder->GetDistance());
+	SmartDashboard::PutNumber("Encoder", encoder->GetDistance());
 
 }
 
