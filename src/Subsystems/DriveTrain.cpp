@@ -2,12 +2,20 @@
 #include "../RobotMap.h"
 #include "../Commands/Drive.h"
 
+using namespace frc;
+
 DriveTrain::DriveTrain()
 :	Subsystem("DriveTrain")
 {
 	robotDrive = new RobotDrive(F_R_Motor, B_R_Motor, F_L_Motor, B_L_Motor);
 	robotDrive -> SetSensitivity(0.75);
 	robotDrive -> SetMaxOutput(1.0);
+
+	encoder = new Encoder(Encoder_Pos, Encoder_Neg, false, Encoder::EncodingType::k4X);
+	encoder->SetMaxPeriod(0.1);
+	encoder->SetMinRate(10);
+	encoder->SetDistancePerPulse(5);
+	encoder->SetSamplesToAverage(7);
 }
 
 void DriveTrain::InitDefaultCommand(){
@@ -20,6 +28,7 @@ void DriveTrain::InitDefaultCommand(){
 void DriveTrain::DriveWithJoystick(Joystick* lStick, Joystick* rStick){
 
 	robotDrive->TankDrive(lStick, rStick);
+	SmartDashboard::PutNumber(encoder->GetDistance());
 
 }
 

@@ -30,4 +30,8 @@ const int B_L_Motor = 3;
 const int R_Stick = 0;
 const int L_Stick = 1;
 
+//YEECODERS
+const int Encoder_Pos = 8;
+const int Encoder_Neg = 9;
+
 #endif
