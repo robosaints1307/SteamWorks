@@ -29,9 +29,14 @@ const int B_L_Motor = 3;
 //Joystick
 const int R_Stick = 0;
 const int L_Stick = 1;
+const int Button1 = 1
 
-//YEECODERS
+//Encoder
 const int Encoder_Pos = 8;
 const int Encoder_Neg = 9;
+
+//RopeClimb
+const int Rope_Motor = 0;
+const int Rope_Motor2 = 0;
 
 #endif

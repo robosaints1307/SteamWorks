@@ -34,4 +34,3 @@ void DriveTrain::DriveWithJoystick(Joystick* lStick, Joystick* rStick){
 
 void DriveTrain::Stop() {
 	robotDrive->StopMotor();
-}
