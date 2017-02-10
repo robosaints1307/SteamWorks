@@ -1,15 +1,16 @@
-/*
- * Climb.h
- *
- *  Created on: Feb 8, 2017
- *      Author: STA
- */
+#ifndef Climb_H
+#define Climb_H
 
-#ifndef SRC_COMMANDS_CLIMB_H_
-#define SRC_COMMANDS_CLIMB_H_
+#include "../CommandBase.h"
 
-#include "Climb.cpp"
+class Climb : public CommandBase {
+public:
+	Climb();
+	void Initialize();
+	void Execute();
+	bool IsFinished();
+	void End();
+	void Interrupted();
+};
 
-
-
-#endif /* SRC_COMMANDS_CLIMB_H_ */
+#endif  // Climb_H
