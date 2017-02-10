@@ -6,7 +6,9 @@
  */
 #include "WPILib.h"
 #include "Subsystems/DriveTrain.h"
+#include "Subsystems/RopeClimbing.h"
 #include "OI.h"
+
 
 #ifndef SRC_ROBOT_H_
 #define SRC_ROBOT_H_

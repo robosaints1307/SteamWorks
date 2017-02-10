@@ -9,7 +9,7 @@ OI::OI()
 	rStick = new frc::Joystick(R_Stick);
 	joy = new Joystick(1);
 
-	JoystickButton* button1 = new JoystickButton(joy, 1);
+	JoystickButton* button1 = new JoystickButton();
 }
 frc::Joystick* OI::GetLStick(){
 	return lStick;
