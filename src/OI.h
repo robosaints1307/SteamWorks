@@ -15,6 +15,7 @@ public:
 
 	Joystick* GetLStick();
 	Joystick* GetRStick();
+	Button* climbButton;
 
 };
 

@@ -2,6 +2,7 @@
 #define Climb_H
 
 #include "../CommandBase.h"
+#include "WPILib.h"
 
 class Climb : public CommandBase {
 public:

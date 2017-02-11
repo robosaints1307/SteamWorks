@@ -6,9 +6,9 @@
  */
 #include "WPILib.h"
 #include "Subsystems/DriveTrain.h"
-#include "Subsystems/RopeClimbing.h"
+#include "Subsystems/RopeClimber.h"
 #include "OI.h"
-
+#include "Commands/Climb.h"
 
 #ifndef SRC_ROBOT_H_
 #define SRC_ROBOT_H_
@@ -19,6 +19,7 @@ class Robot: public IterativeRobot{
 public:
 	static DriveTrain* drivetrain;
 	static OI* oi;
+	static Climb* climb;
 
 private:
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();

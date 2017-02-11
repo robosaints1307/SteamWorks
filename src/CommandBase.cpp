@@ -4,10 +4,14 @@
 
 // Initialize a single static instance of all of your subsystems to NULL
 //std::unique_ptr<ExampleSubsystem> CommandBase::examplesubsystem;
+DriveTrain* CommandBase::driveTrain = NULL;
+OI* CommandBase::oi = NULL;
+RopeClimber* CommandBase::ropeClimber = NULL;
 
 CommandBase::CommandBase(const std::string &name) :
 		Command(name)
 {
+
 }
 
 CommandBase::CommandBase() :
