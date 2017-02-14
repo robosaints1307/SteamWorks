@@ -28,5 +28,7 @@
 *.out
 *.app
 
-/Debug
+# FRC ignore
 *.projects
+*.cproject
+*.xml
