@@ -13,7 +13,6 @@ CommandBase::CommandBase(const std::string &name) :
 {
 
 }
-//i like pie
 CommandBase::CommandBase() :
 		Command()
 {
