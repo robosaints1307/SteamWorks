@@ -27,7 +27,7 @@ DriveTrain::DriveTrain()
 void DriveTrain::InitDefaultCommand(){
 	// Set the default command for a subsystem here.
 	SetDefaultCommand(new Drive());
-	gyro -> Calibrate;
+	gyro -> Calibrate();
 	SmartDashboard::PutNumber("GetAngle", gyro->GetAngle());
 }
 
