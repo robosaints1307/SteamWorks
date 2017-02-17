@@ -1,6 +1,8 @@
 #include "DriveTrain.h"
 #include "../RobotMap.h"
 #include "../Commands/Drive.h"
+#include "ADXRS450_Gyro.h"
+
 
 using namespace frc;
 
@@ -16,11 +18,17 @@ DriveTrain::DriveTrain()
 	encoder->SetMinRate(10);
 	encoder->SetDistancePerPulse(5);
 	encoder->SetSamplesToAverage(7);
+
+	gyro = new ADXRS450_Gyro();
+
+
 }
 
 void DriveTrain::InitDefaultCommand(){
 	// Set the default command for a subsystem here.
 	SetDefaultCommand(new Drive());
+	gyro -> Calibrate;
+	SmartDashboard::PutNumber("GetAngle", gyro->GetAngle());
 }
 
 // Put methods for controlling this subsystem
