@@ -16,6 +16,10 @@ DriveTrain::DriveTrain()
 	encoder->SetMinRate(10);
 	encoder->SetDistancePerPulse(5);
 	encoder->SetSamplesToAverage(7);
+
+	gyro = new ADXRS450_Gyro();
+
+
 }
 
 void DriveTrain::InitDefaultCommand(){
@@ -34,3 +38,4 @@ void DriveTrain::DriveWithJoystick(Joystick* lStick, Joystick* rStick){
 
 void DriveTrain::Stop() {
 	robotDrive->StopMotor();
+}

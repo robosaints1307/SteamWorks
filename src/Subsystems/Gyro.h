@@ -3,10 +3,12 @@
 
 #include <Commands/Subsystem.h>
 #include "ADXRS450_Gyro.h"
+#include "WPILib.h"
+
 
 class Gyro : public Subsystem
 {
-	RobotDrive IterativeRobot;
+	RobotDrive robotDrive;
 static const float kP = 0.03;
 
 private:
@@ -17,6 +19,7 @@ public:
 	Gyro();
 
 	ADXRS450_Gyro gyro;
+
 	void InitDefaultCommand();
 };
 

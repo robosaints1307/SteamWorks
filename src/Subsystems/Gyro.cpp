@@ -1,13 +1,14 @@
-#include "Gyro.h"
 #include "../RobotMap.h"
+#include "Gyro.h"
+#include "WPILib.h"
+#include "ADXRS450_Gyro.h"
 
 using namespace frc;
 
 
-Gyro::Gyro(): Subsystem("Gyro") {
-
-
-}
+Gyro::Gyro()
+:	Subsystem("Gyro")
+{
 
 
 }
@@ -15,12 +16,11 @@ Gyro::Gyro(): Subsystem("Gyro") {
 void Gyro::InitDefaultCommand()
 {
 
-	SmartDashboard::PutData("GetAngle", gyro.GetAngle());
-
-	IterativeRobot (1,2),
-	gyro(1)
+	SmartDashboard::PutNumber("GetAngle", Gyro::GetAngle());
+	robotDrive (1,2),
+	Gyro(1);
 	{
-		IterativeRobot.SetExpiration(0.1);
+		robotDrive::SetExpiration(0.1);
 	}
 
 
