@@ -9,7 +9,7 @@ DriveTrain::DriveTrain()
 {
 	robotDrive = new RobotDrive(F_R_Motor, B_R_Motor, F_L_Motor, B_L_Motor);
 	robotDrive -> SetSensitivity(0.75);
-	robotDrive -> SetMaxOutput(1.0);
+	robotDrive -> SetMaxOutput(0.25);
 
 	encoder = new Encoder(Encoder_Pos, Encoder_Neg, false, Encoder::EncodingType::k4X);
 	encoder->SetMaxPeriod(0.1);
@@ -28,9 +28,14 @@ void DriveTrain::InitDefaultCommand(){
 void DriveTrain::DriveWithJoystick(Joystick* lStick, Joystick* rStick){
 
 	robotDrive->TankDrive(lStick, rStick);
-	SmartDashboard::PutNumber("Encoder", encoder->GetDistance());
+	SmartDashboard::PutNumber("Encoder", encoder->GetRaw());
 
+}
+
+void DriveTrain::AutoDrive(double left, double right){
+	robotDrive->TankDrive(left, right);
 }
 
 void DriveTrain::Stop() {
 	robotDrive->StopMotor();
+}

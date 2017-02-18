@@ -13,10 +13,9 @@ private:
 
 public:
 	DriveTrain();
-
 	void InitDefaultCommand() override;
-
 	void DriveWithJoystick (Joystick* lStick, Joystick* rStick);
+	void AutoDrive(double left, double right);
 	void Stop();
 };
 

@@ -29,6 +29,9 @@ void Robot::RobotInit()
 	chooser = new SendableChooser<Command*>();
 	//chooser->AddDefault("Default Auto", new ExampleCommand());
 	//chooser->AddObject("My Auto", new MyAutoCommand());
+	chooser->AddDefault("Center Auto", new AutoCommands());
+	chooser->AddObject("Left Auto", new AutoCommandsLeft());
+	chooser->AddObject("Right Auto", new AutoCommandsRight());
 
 	SmartDashboard::PutData("Auto Modes", chooser);
 }
