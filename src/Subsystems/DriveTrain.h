@@ -20,8 +20,7 @@ public:
 	DriveTrain();
 
 	void InitDefaultCommand() override;
-
-	void DriveWithJoystick (Joystick* lStick, Joystick* rStick);
+	void DriveWithJoystick (Joystick* lStick, Joystick* rstick);
 	void Stop();
 };
 

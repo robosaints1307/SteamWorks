@@ -21,22 +21,23 @@ DriveTrain::DriveTrain()
 
 	gyro = new ADXRS450_Gyro();
 
-
 }
 
 void DriveTrain::InitDefaultCommand(){
 	// Set the default command for a subsystem here.
 	SetDefaultCommand(new Drive());
 	gyro -> Calibrate();
-	SmartDashboard::PutNumber("GetAngle", gyro->GetAngle());
+
 }
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void DriveTrain::DriveWithJoystick(Joystick* lStick, Joystick* rStick){
+void DriveTrain::DriveWithJoystick(Joystick* lStick, Joystick* rstick){
 
-	robotDrive->TankDrive(lStick, rStick);
+	robotDrive->ArcadeDrive(lStick->GetZ(), lStick->GetX());
 	SmartDashboard::PutNumber("Encoder", encoder->GetDistance());
+	SmartDashboard::PutNumber("Get Angle", gyro->GetAngle());
+
 
 }
 

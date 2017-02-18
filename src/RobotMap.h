@@ -35,7 +35,7 @@ const int R_Stick = 0;
 const int L_Stick = 1;
 
 //buttons
-const int Button1 = 0;
+const int Button1 = 1;
 
 //Encoder
 const int Encoder_Pos = 8;
