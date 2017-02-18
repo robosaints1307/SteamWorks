@@ -2,25 +2,28 @@
 #include "WPILib.h"
 #include "RobotMap.h"
 #include "Commands/Climb.h"
+//#include "Commands/Direction.h"
 
+using namespace frc;
 OI::OI()
 {
 	// Process operator interface input here.
-	lStick = new frc::Joystick(L_Stick);
-	climbButton = new JoystickButton(lStick, Button1);
-	rStick = new frc::Joystick(R_Stick);
+	Stick = new Joystick(stick_port);
 
-	climbButton -> WhileHeld(new Climb());
+	//reverseButton = new JoystickButton(Stick, Reverse_Button);
+
+	climbButton = new JoystickButton(Stick, Button1);
+
+	climbButton->WhileHeld(new Climb());
+
+	//reverseButton->WhileHeld(new Direction());
 
 
 
 }
-frc::Joystick* OI::GetLStick(){
-	return lStick;
+frc::Joystick* OI::GetStick(){
+	return Stick;
 
-}
-frc::Joystick* OI::GetRStick(){
-	return rStick;
 }
 
 

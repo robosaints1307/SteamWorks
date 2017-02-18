@@ -7,15 +7,14 @@ class OI
 {
 private:
 
-	Joystick *lStick;
-	Joystick *rStick;
+	Joystick *Stick;
+	//JoystickButton *reverseButton;
 
 public:
 	OI();
 
-	Joystick* GetLStick();
+	Joystick* GetStick();
 	Button* climbButton;
-	Joystick* GetRStick();
 
 };
 

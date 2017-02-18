@@ -31,11 +31,12 @@ const int CLIMB_MOTOR1 = 4;
 const int CLIMB_MOTOR2 = 5;
 
 //Joystick
-const int R_Stick = 0;
-const int L_Stick = 1;
+const int stick_port = 0;
 
 //buttons
 const int Button1 = 1;
+const int Reverse_Button = 2;
+const int DIRECTION = 1;
 
 //Encoder
 const int Encoder_Pos = 8;
