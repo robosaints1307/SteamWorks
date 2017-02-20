@@ -1,5 +1,6 @@
 #include "Robot.h"
 #include "CommandBase.h"
+#include "RobotMap.h"
 
 #include <cstddef>
 
@@ -30,8 +31,8 @@ void Robot::RobotInit()
 	//chooser->AddObject("My Auto", new MyAutoCommand());
 
 	SmartDashboard::PutData("Auto Modes", chooser);
+	CameraServer::GetInstance()->StartAutomaticCapture();
 }
-//I like Trains
 /**
  * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
  * using the dashboard. The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW
