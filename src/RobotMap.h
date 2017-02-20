@@ -42,6 +42,6 @@ const int DIRECTION = 1;
 const int Encoder_Pos = 8;
 const int Encoder_Neg = 9;
 
-const int Climb_Speed = 0.25;
+const double Climb_Speed = -1.0;
 
 #endif

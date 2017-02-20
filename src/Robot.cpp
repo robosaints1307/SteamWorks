@@ -16,12 +16,11 @@ using namespace frc;
 // These could be smart pointers, but I think that just adds
 // a level of complexity without any benefit to the robot code.
 //
-DriveTrain* Robot::drivetrain = 0;
+//DriveTrain* Robot::drivetrain = 0;
 OI* Robot::oi = 0;
 
 void Robot::RobotInit()
 {
-	drivetrain = new DriveTrain();
 	oi = new OI();
 
 	CommandBase::init();

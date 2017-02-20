@@ -43,7 +43,7 @@ void DriveTrain::DriveWithJoystick(Joystick* Stick){
 
 	robotDrive->ArcadeDrive(Stick->GetY(), Stick->GetX()*(-1));
 	SmartDashboard::PutNumber("MaxOutput", max_speed);
-	SmartDashboard::PutNumber("Encoder", encoder->GetDistance());
+	SmartDashboard::PutNumber("Encoder", encoder->GetRaw());
 	SmartDashboard::PutNumber("Get Angle", gyro->GetAngle());
 
 

@@ -6,7 +6,7 @@
 
 Drive::Drive(): CommandBase("Drive"){
 
-	Requires(Robot::drivetrain);
+	Requires(driveTrain);
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
@@ -20,7 +20,7 @@ void Drive::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute()
 {
-	Robot::drivetrain->DriveWithJoystick(Robot::oi->GetStick());
+	driveTrain->DriveWithJoystick(Robot::oi->GetStick());
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -32,7 +32,7 @@ bool Drive::IsFinished()
 // Called once after isFinished returns true
 void Drive::End()
 {
-	Robot::drivetrain->Stop();
+	driveTrain->Stop();
 }
 
 // Called when another command which requires one or more of the same

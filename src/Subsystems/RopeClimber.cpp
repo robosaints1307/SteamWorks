@@ -2,6 +2,8 @@
 #include "../RobotMap.h"
 #include "OI.h"
 
+using namespace frc;
+
 RopeClimber::RopeClimber() : Subsystem("RopeClimber")
 {
 	climbMotor1 = new Spark(CLIMB_MOTOR1);
@@ -19,6 +21,7 @@ void RopeClimber::InitDefaultCommand()
 
 void RopeClimber::Lift(double power)
 {
+	SmartDashboard::PutNumber("RopeClimber", power);
 	climbMotor1->Set(power);
 	climbMotor2->Set(power);
 }

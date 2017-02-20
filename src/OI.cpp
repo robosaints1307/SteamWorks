@@ -13,7 +13,7 @@ OI::OI()
 	//reverseButton = new JoystickButton(Stick, Reverse_Button);
 
 	climbButton = new JoystickButton(Stick, Button1);
-
+//	climbButton->WhenPressed(new Climb());
 	climbButton->WhileHeld(new Climb());
 
 	//reverseButton->WhileHeld(new Direction());

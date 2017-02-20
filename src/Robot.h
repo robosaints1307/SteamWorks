@@ -17,9 +17,9 @@
 class Robot: public IterativeRobot{
 
 public:
-	static DriveTrain* drivetrain;
+//	static DriveTrain* drivetrain;
 	static OI* oi;
-	static Climb* climb;
+//	static Climb* climb;
 
 private:
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
