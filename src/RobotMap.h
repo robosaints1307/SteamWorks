@@ -45,6 +45,6 @@ const int Encoder_Neg = 9;
 const double Climb_Speed = -1.0;
 
 //Camera
-const int camera = 0;
+const int Camera = 0;
 
 #endif
