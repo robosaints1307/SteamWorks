@@ -3,7 +3,7 @@
 #include "RobotMap.h"
 #include "CameraServer.h"
 
-#include <cstddef>
+#include "cstddef"
 
 using namespace frc;
 
@@ -34,7 +34,7 @@ void Robot::RobotInit()
 	SmartDashboard::PutData("Auto Modes", chooser);
 	CameraServer::GetInstance()->StartAutomaticCapture();
 	CameraServer::GetInstance()->GetVideo();
-	CameraServer::GetInstance()->AddServer("Camera", 0);
+	CameraServer::GetInstance()->AddServer("Camera", 1);
 }
 /**
  * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
