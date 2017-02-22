@@ -3,8 +3,6 @@
 
 #include <string>
 #include "Commands/Command.h"
-//#include "Subsystems/ExampleSubsystem.h"
-#include "OI.h"
 #include "WPILib.h"
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/RopeClimber.h"
@@ -23,7 +21,7 @@ public:
 	static void init();
 	// Create a single static instance of all of your subsystems
 	static DriveTrain *driveTrain;
-	static OI *oi;
+	//static OI *oi;
 	static RopeClimber* ropeClimber;
 	//static std::unique_ptr<ExampleSubsystem> examplesubsystem;
 };

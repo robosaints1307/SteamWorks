@@ -9,6 +9,7 @@
 #include "Subsystems/RopeClimber.h"
 #include "OI.h"
 #include "Commands/Climb.h"
+#include "Commands/AutoDrive.h"
 
 #ifndef SRC_ROBOT_H_
 #define SRC_ROBOT_H_

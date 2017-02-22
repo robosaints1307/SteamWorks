@@ -1,9 +1,7 @@
 #include "Robot.h"
 #include "CommandBase.h"
-#include "RobotMap.h"
-#include "CameraServer.h"
 
-#include "cstddef"
+#include <cstddef>
 
 using namespace frc;
 
@@ -30,12 +28,14 @@ void Robot::RobotInit()
 	chooser = new SendableChooser<Command*>();
 	//chooser->AddDefault("Default Auto", new ExampleCommand());
 	//chooser->AddObject("My Auto", new MyAutoCommand());
+	chooser->AddDefault("Auto Drive Center", new AutoDrive(200.0, 0.1)); //1800.0
 
 	SmartDashboard::PutData("Auto Modes", chooser);
-	CameraServer::GetInstance()->StartAutomaticCapture();
-	CameraServer::GetInstance()->GetVideo();
-	CameraServer::GetInstance()->AddServer("Camera", 1);
+	CameraServer::GetInstance()->StartAutomaticCapture(0);
+	CameraServer::GetInstance()->StartAutomaticCapture(1);
+
 }
+//I like Trains
 /**
  * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
  * using the dashboard. The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW

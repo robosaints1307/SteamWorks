@@ -29,6 +29,7 @@ const int B_L_Motor = 3;
 //climbmotors
 const int CLIMB_MOTOR1 = 4;
 const int CLIMB_MOTOR2 = 5;
+const double Climb_Speed = -1.0;
 
 //Joystick
 const int stick_port = 0;
@@ -41,10 +42,14 @@ const int DIRECTION = 1;
 //Encoder
 const int Encoder_Pos = 8;
 const int Encoder_Neg = 9;
+const int pulses_per_rotation = 1440;
+const double wheel_circumference = 6*M_PI; //wheel is 6in in diameter
 
-const double Climb_Speed = -1.0;
+const double pulse = wheel_circumference/pulses_per_rotation;
+const double one_inch = pulse*wheel_circumference;
 
-//Camera
-const int Camera = 0;
+//camera
+const int Cam0 = 0;
+const int Cam1 = 1;
 
 #endif
