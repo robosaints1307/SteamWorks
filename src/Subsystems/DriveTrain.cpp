@@ -7,7 +7,11 @@ using namespace frc;
 
 DriveTrain::DriveTrain() : PIDSubsystem("PIDTrain", 0.4, 0.0, 0.0)
 {
-	robotDrive = new RobotDrive(F_R_Motor, B_R_Motor, F_L_Motor, B_L_Motor);
+	f_r_motor = new Spark(F_R_Motor);
+	b_r_motor = new Spark(B_R_Motor);
+	f_l_motor = new Talon(F_L_Motor);
+	b_l_motor = new Talon(B_L_Motor);
+	robotDrive = new RobotDrive(f_r_motor, b_r_motor, f_l_motor, b_l_motor);
 //	p = SmartDashboard::GetNumber("p", 0);
 //	i = SmartDashboard::GetNumber("i", 0);
 //	d = SmartDashboard::GetNumber("d", 0);
@@ -24,7 +28,14 @@ DriveTrain::DriveTrain() : PIDSubsystem("PIDTrain", 0.4, 0.0, 0.0)
 	encoder->SetDistancePerPulse(pulse);
 //	encoder->SetSamplesToAverage(7);
 
-	//gyro = new ADXRS450_Gyro();
+	gyro = new ADXRS450_Gyro();
+
+	speed = Robot_Speed;
+	left_speed = speed;
+	right_speed = speed;
+
+	SetAbsoluteTolerance(0.3); //what does this do
+	//SetContinuous(false);
 }
 
 double DriveTrain::ReturnPIDInput() {
@@ -32,20 +43,24 @@ double DriveTrain::ReturnPIDInput() {
 	// e.g. a sensor, like a potentiometer:
 	// yourPot->SetAverageVoltage() / kYourMaxVoltage;
 	SmartDashboard::PutNumber("Encoder", encoder->GetDistance());
+	SmartDashboard::PutNumber("Gyro", gyro->GetAngle());
 	return encoder->GetDistance();
 }
 
 void DriveTrain::UsePIDOutput(double output) {
 	// Use output to drive your system, like a motor
 	// e.g. yourMotor->Set(output);
-	SmartDashboard::PutNumber("PIDOutput", output);
-	robotDrive->TankDrive(output, output);
+	//SmartDashboard::PutNumber("PIDOutput", output);
+	std::tuple<double, double> correction = DriveTrain::CorrectSpeed(gyro->GetAngle());
+	SmartDashboard::PutNumber("correct left", std::get<0>(correction));
+	robotDrive->TankDrive(std::get<0>(correction),
+			std::get<1>(correction));
 }
 
 void DriveTrain::InitDefaultCommand(){
 	// Set the default command for a subsystem here.
 	SetDefaultCommand(new Drive());
-	//gyro->Calibrate();
+	gyro->Calibrate();
 	encoder->Reset();
 }
 
@@ -55,25 +70,42 @@ void DriveTrain::DriveWithJoystick(Joystick* Stick){
 	//robotDrive -> SetSensitivity((Stick->GetZ()*50+50)*0.01);
 	Disable();
 	double max_speed = 1.0 - (Stick->GetZ()*50+50)*(0.01);
-	//double reading = 0.0;
-	//reading = reading + encoder->GetDistance();
 	robotDrive -> SetMaxOutput(max_speed);
 
 	robotDrive->ArcadeDrive(Stick->GetY(), Stick->GetX()*(-1));
 	SmartDashboard::PutNumber("MaxOutput", max_speed);
 	SmartDashboard::PutNumber("Encoder", encoder->GetDistance());
-	//SmartDashboard::PutNumber("Encoder Scale", encoder->GetEncodingScale());
-	//SmartDashboard::PutNumber("Get Angle", gyro->GetAngle());
+	SmartDashboard::PutNumber("Get Angle", gyro->GetAngle());
 }
 
-void DriveTrain::AutoDrive(double distance, float speed){
+void DriveTrain::AutoDrive(double distance){
 	encoder->Reset();
+	gyro->Reset();
 	robotDrive->SetMaxOutput(speed);
 	SetSetpoint(distance);
-	SetPercentTolerance(10);
+	//SetPercentTolerance(0.10);
 	Enable();
 }
 
 void DriveTrain::Stop() {
 	robotDrive->StopMotor();
+}
+
+std::tuple<double, double> DriveTrain::CorrectSpeed(double angle){ //pass this gyro->GetAngle()
+	double adjustment = 0.0625;
+	if(angle < 0){ //adjusts periodically by .05
+		left_speed = speed + adjustment;
+		right_speed = speed - adjustment;
+		return std::make_tuple(left_speed, right_speed);
+	}
+	else if(angle > 0){
+		left_speed = speed + adjustment;
+		right_speed = speed - adjustment;
+		return std::make_tuple(left_speed, right_speed);
+	}
+	else{
+		left_speed = speed;
+		right_speed = speed;
+		return std::make_tuple(left_speed, right_speed);
+	}
 }

@@ -1,16 +1,15 @@
 #include "AutoDrive.h"
 
-AutoDrive::AutoDrive(double distance, float spd) {
+AutoDrive::AutoDrive(double distance) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(driveTrain);
 	dist = distance;
-	speed = spd;
 }
 
 // Called just before this Command runs the first time
 void AutoDrive::Initialize() {
-	driveTrain->AutoDrive(dist*one_inch, speed);
+	driveTrain->AutoDrive(dist);//*one_inch);
 }
 
 // Called repeatedly when this Command is scheduled to run

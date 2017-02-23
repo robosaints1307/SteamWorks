@@ -5,7 +5,7 @@
 
 class AutoDrive : public CommandBase {
 public:
-	AutoDrive(double distance, float speed);
+	AutoDrive(double distance);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -13,7 +13,6 @@ public:
 	void Interrupted();
 private:
 	double dist;
-	float speed;
 };
 
 #endif  // AutoDrive_H

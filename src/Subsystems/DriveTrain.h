@@ -14,10 +14,17 @@ private:
 	// for methods that implement subsystem capabilities
 
 	Encoder* encoder;
-	//ADXRS450_Gyro* gyro;
+	ADXRS450_Gyro* gyro;
+	Spark* f_r_motor;
+	Spark* b_r_motor;
+	Talon* f_l_motor;
+	Talon* b_l_motor;
 //	double p;
 //	double i;
 //	double d;
+	double speed;
+	double left_speed;
+	double right_speed;
 
 public:
 	RobotDrive* robotDrive;
@@ -25,10 +32,11 @@ public:
 
 	void InitDefaultCommand() override;
 	void DriveWithJoystick (Joystick* Stick);
-	void AutoDrive(double distance, float speed);
+	void AutoDrive(double distance);
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
 	void Stop();
+	std::tuple<double, double> CorrectSpeed(double angle);
 };
 
 #endif
