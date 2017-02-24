@@ -14,7 +14,7 @@ DriveTrain::DriveTrain() : Subsystem("DriveTrain")
 
 	gyro = new ADXRS450_Gyro();
 
-	robotDrive->SetMaxOutput(0.5);
+//	robotDrive->SetMaxOutput(0.5);
 }
 
 void DriveTrain::Reset() {
@@ -36,12 +36,19 @@ double DriveTrain::GetDirection() {
 
 void DriveTrain::Turn(double angle) {
 	SmartDashboard::PutNumber("CurAngle", angle);
-	if(0 < angle){
-		robotDrive->TankDrive(0.25, -0.25);
-	}
-	else if(0 > angle){
-		robotDrive->TankDrive(-0.25, 0.25);
-	}
+	printf("%f\n", angle);
+	robotDrive->TankDrive(angle, -angle);
+//	if(0 < angle){
+//		SmartDashboard::PutNumber("Running", 2);
+//		robotDrive->TankDrive(0.25, -0.25);
+//	}
+//	else if(0 > angle){
+//		SmartDashboard::PutNumber("Running", 3);
+//		robotDrive->TankDrive(-0.25, 0.25);
+//	}
+//	else{
+//		SmartDashboard::PutNumber("Running", 5);
+//	}
 }
 void DriveTrain::DriveStraight(double speed) {
 
@@ -50,13 +57,13 @@ void DriveTrain::DriveStraight(double speed) {
 	double angle = GetDirection();
 	SmartDashboard::PutNumber("DriveStraight:angle", angle);
 
-	double leftSpeed = speed;
-	SmartDashboard::PutNumber("DriveStraight:leftSpeed", leftSpeed);
+	double left_speed = speed;
+	SmartDashboard::PutNumber("DriveStraight:leftSpeed", left_speed);
 
-	double rightSpeed = speed + (angle * kP);
-	SmartDashboard::PutNumber("DriveStraight:rightSpeed", rightSpeed);
+	double right_speed = speed + (angle * kP);
+	SmartDashboard::PutNumber("DriveStraight:rightSpeed", right_speed);
 
-	robotDrive->TankDrive(leftSpeed, rightSpeed);
+	robotDrive->TankDrive(left_speed, right_speed);
 }
 
 void DriveTrain::InitDefaultCommand(){
@@ -67,7 +74,11 @@ void DriveTrain::InitDefaultCommand(){
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void DriveTrain::DriveWithJoystick(Joystick* Stick){
+
 	double max_speed = 1.0 - (Stick->GetZ()*50+50)*(0.01);
+	if (max_speed == 1.0){
+		max_speed -= 0.01;
+	}
 	robotDrive -> SetMaxOutput(max_speed);
 
 	robotDrive->ArcadeDrive(Stick->GetY(), Stick->GetX()*(-1));

@@ -4,10 +4,11 @@ AutoTurn::AutoTurn(double angle) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(driveTrain);
-	pid = new PIDController(0.4, 0.0, 0.0, new AutoTurnPIDSource(), new AutoTurnPIDOutput());
+	pid = new PIDController(0.4, 0.025, 0.0, new AutoTurnPIDSource(), new AutoTurnPIDOutput());
 	pid->SetPercentTolerance(5);
-	pid->SetContinuous(false);
+	pid->SetContinuous(true);
 	pid->SetSetpoint(angle);
+	pid->SetOutputRange(-0.5, 0.5);
 }
 
 // Called just before this Command runs the first time
@@ -30,6 +31,7 @@ bool AutoTurn::IsFinished() {
 // Called once after isFinished returns true
 void AutoTurn::End() {
 	driveTrain->Stop();
+	SmartDashboard::PutNumber("Turn Ended", 1);
 }
 
 // Called when another command which requires one or more of the same
@@ -47,4 +49,3 @@ AutoTurnPIDOutput::~AutoTurnPIDOutput() {}
 void AutoTurnPIDOutput::PIDWrite(double a) {
 	CommandBase::driveTrain->Turn(a);
 }
-

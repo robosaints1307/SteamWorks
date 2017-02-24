@@ -4,8 +4,6 @@
 #include "../CommandBase.h"
 
 class AutoTurn : public CommandBase {
-private:
-PIDController* pid;
 public:
 	AutoTurn(double angle);
 	void Initialize();
@@ -13,6 +11,8 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
+private:
+	PIDController* pid;
 };
 
 class AutoTurnPIDSource: public PIDSource {

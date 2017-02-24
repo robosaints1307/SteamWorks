@@ -28,12 +28,13 @@ void Robot::RobotInit()
 	chooser = new SendableChooser<Command*>();
 	//chooser->AddDefault("Default Auto", new ExampleCommand());
 	//chooser->AddObject("My Auto", new MyAutoCommand());
-	chooser->AddDefault("Turn Test", new AutoTurn(90)); //pass degrees
-	chooser->AddObject("Auto Drive Center", new AutoDrive(240)); //1 = 1/2in
+	chooser->AddDefault("Center Start(Test for now)", new AutonomousCommandsCenter()); //pass degrees
+	chooser->AddObject("Left Start", new AutonomousCommandsLeft());
+	chooser->AddObject("Right Start", new AutonomousCommandsRight());
 
 	SmartDashboard::PutData("Auto Modes", chooser);
-	CameraServer::GetInstance()->StartAutomaticCapture(0);
-	CameraServer::GetInstance()->StartAutomaticCapture(1);
+	//CameraServer::GetInstance()->StartAutomaticCapture(0);
+	//CameraServer::GetInstance()->StartAutomaticCapture(1);
 
 }
 //I like Trains

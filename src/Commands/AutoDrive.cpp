@@ -1,11 +1,13 @@
 #include "AutoDrive.h"
 
-AutoDrive::AutoDrive(double distance) {
+AutoDrive::AutoDrive(double distance) { //1 = 1/2in
 	Requires(driveTrain);
 	pid = new PIDController(0.5, 0.025, 0.0, new AutoDrivePIDSource(), new AutoDrivePIDOutput());
 	pid->SetPercentTolerance(5);
 	pid->SetContinuous(false);
 	pid->SetSetpoint(distance);
+	// Change this to be speed and pass speed in the constructor!
+	pid->SetOutputRange(-0.5, 0.5);
 }
 
 // Called just before this Command runs the first time

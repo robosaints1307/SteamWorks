@@ -11,6 +11,9 @@
 #include "Commands/Climb.h"
 #include "Commands/AutoDrive.h"
 #include "Commands/AutoTurn.h"
+#include "Commands/AutonomousCommandsCenter.h"
+#include "Commands/AutonomousCommandsLeft.h"
+#include "Commands/AutonomousCommandsRight.h"
 
 #ifndef SRC_ROBOT_H_
 #define SRC_ROBOT_H_
