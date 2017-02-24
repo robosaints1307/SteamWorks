@@ -10,7 +10,7 @@
 #include "OI.h"
 #include "Commands/Climb.h"
 #include "Commands/AutoDrive.h"
-#include "CameraServer.h"
+#include "Commands/AutoTurn.h"
 
 #ifndef SRC_ROBOT_H_
 #define SRC_ROBOT_H_
@@ -35,5 +35,9 @@ private:
 	void TeleopPeriodic() override;
 	void TestPeriodic() override;
 };
+
+
+
+
 
 #endif /* SRC_ROBOT_H_ */

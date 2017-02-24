@@ -12,7 +12,19 @@ public:
 	void End();
 	void Interrupted();
 private:
-	double dist;
+	PIDController* pid;
+};
+
+class AutoDrivePIDSource: public PIDSource {
+public:
+	virtual ~AutoDrivePIDSource();
+	double PIDGet();
+};
+
+class AutoDrivePIDOutput: public PIDOutput {
+public:
+	virtual ~AutoDrivePIDOutput();
+	void PIDWrite(double d);
 };
 
 #endif  // AutoDrive_H

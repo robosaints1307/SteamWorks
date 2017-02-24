@@ -1,7 +1,5 @@
 #include "Robot.h"
 #include "CommandBase.h"
-#include "CameraServer.h"
-#include "RobotMap.h"
 
 #include <cstddef>
 
@@ -30,13 +28,12 @@ void Robot::RobotInit()
 	chooser = new SendableChooser<Command*>();
 	//chooser->AddDefault("Default Auto", new ExampleCommand());
 	//chooser->AddObject("My Auto", new MyAutoCommand());
-	chooser->AddDefault("Auto Drive Center", new AutoDrive(120.0)); //1800.0
+	chooser->AddDefault("Turn Test", new AutoTurn(90)); //pass degrees
+	chooser->AddObject("Auto Drive Center", new AutoDrive(240)); //1 = 1/2in
 
 	SmartDashboard::PutData("Auto Modes", chooser);
 	CameraServer::GetInstance()->StartAutomaticCapture(0);
 	CameraServer::GetInstance()->StartAutomaticCapture(1);
-
-
 
 }
 //I like Trains

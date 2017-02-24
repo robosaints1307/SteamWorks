@@ -21,11 +21,10 @@
 //const int RANGE_FINDER_MODULE = 1;
 
 //Driveing vroom vroom
-const int F_R_Motor = 0; //spark
-const int B_R_Motor = 1; //spark
-const int F_L_Motor = 2; //talon
-const int B_L_Motor = 3; //talon
-const double Robot_Speed = 0.75;
+const int F_R_Motor = 0;
+const int B_R_Motor = 1;
+const int F_L_Motor = 2;
+const int B_L_Motor = 3;
 
 //climbmotors
 const int CLIMB_MOTOR1 = 4;
@@ -47,7 +46,7 @@ const int pulses_per_rotation = 1440;
 const double wheel_circumference = 6*M_PI; //wheel is 6in in diameter
 
 const double pulse = wheel_circumference/pulses_per_rotation;
-//const double one_inch = pulse*wheel_circumference;
+const double one_inch = pulse*wheel_circumference;
 
 //camera
 const int Cam0 = 0;
