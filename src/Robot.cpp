@@ -33,8 +33,8 @@ void Robot::RobotInit()
 	chooser->AddObject("Right Start", new AutonomousCommandsRight());
 
 	SmartDashboard::PutData("Auto Modes", chooser);
-	//CameraServer::GetInstance()->StartAutomaticCapture(0);
-	//CameraServer::GetInstance()->StartAutomaticCapture(1);
+	CameraServer::GetInstance()->StartAutomaticCapture(0);
+	CameraServer::GetInstance()->StartAutomaticCapture(1);
 
 }
 //I like Trains
