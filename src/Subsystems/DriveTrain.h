@@ -14,11 +14,13 @@ private:
 	constexpr static const float kP = 0.03;
 
 	RobotDrive* robotDrive;
-	Encoder* encoder;
+	//Encoder* encoder;
 	ADXRS450_Gyro* gyro;
 
 public:
 	DriveTrain();
+
+	Encoder* encoder;
 
 	void InitDefaultCommand() override;
 	void DriveWithJoystick (Joystick* Stick);

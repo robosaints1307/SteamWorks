@@ -2,8 +2,8 @@
 
 AutoDrive::AutoDrive(double distance) { //1 = 1/2in
 	Requires(driveTrain);
-	pid = new PIDController(0.5, 0.025, 0.0, new AutoDrivePIDSource(), new AutoDrivePIDOutput());
-	pid->SetPercentTolerance(5);
+	pid = new PIDController(0.4, 0.025, 0.0, new AutoDrivePIDSource(), new AutoDrivePIDOutput());
+	pid->SetPercentTolerance(15.0);
 	pid->SetContinuous(false);
 	pid->SetSetpoint(distance);
 	// Change this to be speed and pass speed in the constructor!
@@ -19,7 +19,7 @@ void AutoDrive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void AutoDrive::Execute() {
-
+	//SmartDashboard::PutNumber("Get Distance", driveTrain->encoder->GetDistance());
 }
 
 // Make this return true when this Command no longer needs to run execute()

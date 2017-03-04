@@ -4,7 +4,7 @@ AutoTurn::AutoTurn(double angle) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(driveTrain);
-	pid = new PIDController(0.4, 0.025, 0.0, new AutoTurnPIDSource(), new AutoTurnPIDOutput());
+	pid = new PIDController(0.3, 0.025, 0.0, new AutoTurnPIDSource(), new AutoTurnPIDOutput());
 	pid->SetPercentTolerance(5);
 	pid->SetContinuous(true);
 	pid->SetSetpoint(angle);

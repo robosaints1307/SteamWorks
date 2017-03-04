@@ -11,9 +11,7 @@
 #include "Commands/Climb.h"
 #include "Commands/AutoDrive.h"
 #include "Commands/AutoTurn.h"
-#include "Commands/AutonomousCommandsCenter.h"
-#include "Commands/AutonomousCommandsLeft.h"
-#include "Commands/AutonomousCommandsRight.h"
+#include "Commands/CenterAuto.h"
 
 #ifndef SRC_ROBOT_H_
 #define SRC_ROBOT_H_
@@ -22,14 +20,18 @@
 class Robot: public IterativeRobot{
 
 public:
-//	static DriveTrain* drivetrain;
+	static DriveTrain* drivetrain;
 	static OI* oi;
 //	static Climb* climb;
 
 private:
 	frc::LiveWindow *lw = frc::LiveWindow::GetInstance();
-	Command* autonomousCommand;
+	Command* autonomousCommand; //it might not be happy because I am telling a command to be a commandgroup
 	SendableChooser<Command*>* chooser;
+//	CommandGroup *centerStart;
+//	CommandGroup *leftStart;
+//	CommandGroup *rightStart;
+//	CommandGroup *test;
 
 	void RobotInit() override;
 	void AutonomousInit() override;

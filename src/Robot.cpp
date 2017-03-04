@@ -26,17 +26,39 @@ void Robot::RobotInit()
 	CommandBase::init();
 
 	chooser = new SendableChooser<Command*>();
-	//chooser->AddDefault("Default Auto", new ExampleCommand());
-	//chooser->AddObject("My Auto", new MyAutoCommand());
-	chooser->AddDefault("Center Start(Test for now)", new AutonomousCommandsCenter()); //pass degrees
-	chooser->AddObject("Left Start", new AutonomousCommandsLeft());
-	chooser->AddObject("Right Start", new AutonomousCommandsRight());
+	//It takes cmdgroups but only the first command
+	chooser->AddDefault("Center Start", new CenterAuto());
+	//chooser->AddObject("Left Start", leftStart);
+	//chooser->AddObject("Right Start", rightStart);
+	//chooser->AddObject("test", new AutoDrive(10.0));
 
 	SmartDashboard::PutData("Auto Modes", chooser);
 	CameraServer::GetInstance()->StartAutomaticCapture(0);
 	CameraServer::GetInstance()->StartAutomaticCapture(1);
 
+//	centerStart = new CommandGroup();
+//	centerStart->DoesRequire(CommandBase::driveTrain);
+//	centerStart->AddSequential(new AutoDrive(188.0));
+//
+//	leftStart = new CommandGroup();
+//	leftStart->DoesRequire(CommandBase::driveTrain);
+//	leftStart->AddSequential(new AutoDrive(186.6));
+//	leftStart->AddSequential(new AutoTurn(60.0));
+//	leftStart->AddSequential(new AutoDrive(50.0));
+//
+//	rightStart = new CommandGroup();
+//	rightStart->DoesRequire(CommandBase::driveTrain);
+//	rightStart->AddSequential(new AutoDrive(186.6));
+//	rightStart->AddSequential(new AutoTurn(-60.0));
+//	rightStart->AddSequential(new AutoDrive(50.0));
+//
+//	test = new CommandGroup();
+//	test->DoesRequire(CommandBase::driveTrain);
+//	test->AddSequential(new AutoDrive(120.0));
+//	test->AddSequential(new AutoTurn(-90.0));
+//	test->AddSequential(new AutoDrive(120.0));
 }
+
 //I like Trains
 /**
  * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
@@ -62,11 +84,15 @@ void Robot::AutonomousInit()
 			autonomousCommand = new ExampleCommand();
 		}
 	*/
+	/*
+	 * if(chooser->GetSelected
+	 */
 
 	autonomousCommand = chooser->GetSelected();
 
-	if (autonomousCommand != NULL)
+	if (autonomousCommand != NULL){
 		autonomousCommand->Start();
+	}
 }
 
 void Robot::AutonomousPeriodic()

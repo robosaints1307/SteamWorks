@@ -63,7 +63,7 @@ void DriveTrain::DriveStraight(double speed) {
 	double right_speed = speed + (angle * kP);
 	SmartDashboard::PutNumber("DriveStraight:rightSpeed", right_speed);
 
-	robotDrive->TankDrive(left_speed, right_speed);
+	robotDrive->TankDrive(-left_speed, -right_speed);
 }
 
 void DriveTrain::InitDefaultCommand(){
