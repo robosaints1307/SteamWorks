@@ -8,7 +8,7 @@ using namespace frc;
 OI::OI()
 {
 	// Process operator interface input here.
-	Stick = new Joystick(stick_port);
+	Stick = new Joystick(stick);
 
 	//reverseButton = new JoystickButton(Stick, Reverse_Button);
 
@@ -22,7 +22,7 @@ OI::OI()
 
 }
 frc::Joystick* OI::GetStick(){
-	return Stick;
+	return stick;
 
 }
 

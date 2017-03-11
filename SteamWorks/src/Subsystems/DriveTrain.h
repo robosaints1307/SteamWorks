@@ -3,9 +3,10 @@
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
-//#include "ADXRS450_Gyro.h"
-
+#include "ADXRS450_Gyro.h"
+#include "../RobotMap.h"
 #include <Commands/PIDSubsystem.h>
+#include "OI.h"
 
 class DriveTrain: public Subsystem {
 private:
@@ -23,7 +24,7 @@ public:
 	Encoder* encoder;
 
 	void InitDefaultCommand() override;
-	void DriveWithJoystick (Joystick* L_Stick, Joystick* R_Stick);
+	void DriveWithJoystick (frc::Joystick* stick);
 	void DriveStraight(double speed);
 	void Turn(double angle);
 	double GetDistance();

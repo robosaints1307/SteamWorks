@@ -1,7 +1,7 @@
 #include "Drive.h"
-#include "RobotMap.h"
-#include "Robot.h"
-#include "OI.h"
+#include "../RobotMap.h"
+#include "../Robot.h"
+#include "../OI.h"
 
 
 Drive::Drive(): CommandBase("Drive"){

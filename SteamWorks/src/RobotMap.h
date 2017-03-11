@@ -32,7 +32,7 @@ const int CLIMB_MOTOR2 = 5;
 const double Climb_Speed = -1.0;
 
 //Joystick
-const int stick_port = 0;
+const int stick = 0;
 
 //buttons
 const int Button1 = 1;
