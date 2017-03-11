@@ -3,8 +3,7 @@
 
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
-#include "RobotMap.h"
-
+#include "../RobotMap.h"
 class RopeClimber : public Subsystem {
 private:
 	// It's desirable that everything possible under private except
