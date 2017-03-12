@@ -13,6 +13,7 @@ CommandBase::CommandBase(const std::string &name) :
 {
 
 }
+//;lkdalskd
 CommandBase::CommandBase() :
 		Command()
 {
