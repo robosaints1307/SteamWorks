@@ -74,13 +74,13 @@ void DriveTrain::InitDefaultCommand(){
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void DriveTrain::DriveWithJoystick(Joystick* L_Stick, Joystick* R_Stick){
+void DriveTrain::DriveWithJoystick(Joystick* Stick){
 
-	double max_speed = 1.0 - (L_Stick->GetZ()*50+50)*(0.01); //remove l when going back to arcade
+	double max_speed = 1.0 - (Stick->GetZ()*50+50)*(0.01); //remove l when going back to arcade
 	robotDrive -> SetMaxOutput(max_speed);
 
-	//robotDrive->ArcadeDrive(Stick->GetY(), Stick->GetX()*(-0.75));
-	robotDrive->TankDrive(L_Stick, R_Stick);
+	robotDrive->ArcadeDrive(Stick->GetY(), Stick->GetX()*(-0.75));
+	//robotDrive->TankDrive(L_Stick, R_Stick);
 	SmartDashboard::PutNumber("MaxOutput", max_speed);
 	SmartDashboard::PutNumber("Encoder", encoder->GetDistance());
 }

@@ -22,7 +22,7 @@ OI::OI()
 
 }
 frc::Joystick* OI::GetStick(){
-	return stick;
+	return Stick;
 
 }
 

@@ -6,7 +6,7 @@
 #include "ADXRS450_Gyro.h"
 #include "../RobotMap.h"
 #include <Commands/PIDSubsystem.h>
-#include "OI.h"
+#include "../OI.h"
 
 class DriveTrain: public Subsystem {
 private:
@@ -24,7 +24,7 @@ public:
 	Encoder* encoder;
 
 	void InitDefaultCommand() override;
-	void DriveWithJoystick (frc::Joystick* stick);
+	void DriveWithJoystick (frc::Joystick* Stick);
 	void DriveStraight(double speed);
 	void Turn(double angle);
 	double GetDistance();
